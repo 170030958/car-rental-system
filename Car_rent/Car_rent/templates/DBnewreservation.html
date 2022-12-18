@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Car Rent
+		</title>
+	</head>
+	<body style='background-color:gray'>
+	<style>
+		.button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: green;
+			padding: 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+		
+		.button:hover {background-color: #3e8e41}
+		
+		.button:active {
+			background-color: #3e8e41;
+			box-shadow: 0 5px #666;
+			transform: translateY(4px);
+		}
+		
+		input[type=text], input[type=password] {
+			width: 80%;   
+			margin: 8px 0;
+			padding: 12px 20px;   
+			display: inline-block;   
+			border: 2px solid green;   
+			box-sizing: border-box;
+			border-radius: 12px;	
+		} 	 
+			.grow {
+			height: 6%;
+			right:10%;
+			width: 10%;
+			top:0%;
+			position: absolute;
+			text-align: left;
+			overflow: hidden;
+			transition: 0.2s;
+		}
+		.grow:hover {
+			height: 35%;
+			width: 15%;
+		}
+		.right-hover:hover{
+			color: grey;
+		}
+		.categories_hover{
+			position:absolute;
+			left:22%;
+			top:4%;
+			height:10%;
+			overflow: hidden;
+		}
+		.categories_hover:hover{
+			top:14%;
+			background-color:white;
+			height: 75%;
+			width: 40%;
+			border-style: solid;
+			border-width:1px;
+			border-radius: 7px;
+		}
+		.categories_women_hover{
+			position:absolute;
+			left:29%;
+			top:4%;
+			height:10%;
+			overflow: hidden;
+		}
+		.categories_women_hover:hover{
+			top:14%;
+			background-color:white;
+			height: 75%;
+			width: 40%;
+			border-style: solid;
+			border-width:1px;
+			border-radius: 7px;
+		}
+		.categories_kids_hover{
+			position:absolute;
+			left:38%;
+			top:4%;
+			height:10%;
+			overflow: hidden;
+		}
+		.categories_kids_hover:hover{
+			top:14%;
+			background-color:white;
+			height: 75%;
+			width: 40%;
+			border-style: solid;
+			border-width:1px;
+			border-radius: 7px;
+		}
+		.hover_categories:hover{
+			color:black;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		</style>
+	<div style='background-color:teal'><br>
+	<h2>Car Reservation Page</h2>
+	<br><br><br><br>
+		<div style='position:absolute;right:40%;top:1%'>
+		<br>
+		{% load static %}	
+			<img src="{% static 'car_image.png' %}" width="335" height="130" >
+		</div>
+	</div>
+	<form action='/DB_insert/' method='post'>
+		{% csrf_token %}
+		<br>
+		<input type='text' name='cust_frst_name' placeholder='Your First Name'></input>
+		<input type='text' name='cust_middle_name' placeholder='Your Middle Name'></input>
+		<input type='text' name='cust_last_name' placeholder='Your Last Name'></input>
+		<br><br>
+		<label style="font-size:30px;">Gender:</label><select name="Gender" id="gender" style="font-size:30px;">
+			<option value='select'>Select</option>
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+			<option value="Other">Other</option>
+		</select><br>
+		<p style="font-size:30px;">Date of Birth:</p>
+		<input type='number' min="1" max="31" step="1" name='day1' style="font-size:30px;" placeholder='1'></input>
+		<select name="Month" id="month" style="font-size:30px;">
+			<option value="Select">Select</option>
+			<option value="January">January</option>
+			<option value="February">February</option>
+			<option value="March">March</option>
+			<option value="April">April</option>
+			<option value="May">May</option>
+			<option value="June">June</option>
+			<option value="July">July</option>
+			<option value="August">August</option>
+			<option value="September">September</option>
+			<option value="October">October</option>
+			<option value="November">November</option>
+			<option value="December">December</option>
+		</select>
+		<input type="number" min="1900" max="9999" step="1" style="font-size:30px;" value="1999" name='year'/><br><br>
+		
+		<p style="font-size:30px;">Enter Address:</p>
+		<input type='text' name='street' placeholder='Street Address'></input>
+		<input type='text' name='city' placeholder='City'></input>
+		<input type='text' name='state' placeholder='State'></input>
+		<input type='text' name='zipcode' placeholder='Zip Code'></input>
+		<br><br>
+		<input type='text' name='mobile' placeholder='mobile'></input>
+		<input type='text' name='email' placeholder='Email'></input>
+		
+		
+		<p style="font-size:30px;">Please Select the Car:</p>
+		<select name="sel_car" id="sel_car" style="font-size:30px;">
+			<option value="Select">Select</option>
+			<option value="Ford Fiesta">Ford Fiesta</option>
+			<option value="Toyota Camry">Toyota Camry</option>
+			<option value="Hyundai I20">Hyundai I20</option>
+			<option value="Hyundai Elantra">Hyundai Elantra</option>
+			<option value="Hyundai Acura">Hyundai Acura</option>
+			<option value="Ford Mustang">Ford Mustang</option>
+			<option value="Ford ExplorerST">Ford ExplorerST</option>
+			<option value="Toyota Prius">Toyota Prius</option>
+			<option value="Toyota Avalon">Toyota Avalon</option>
+			<option value="Toyota Corolla">Toyota Corolla</option>
+			<option value="Toyota Mirai">Toyota Mirai</option>
+			<option value="Audi Q5">Audi Q5</option>
+			<option value="Audi Q7">Audi Q7</option>
+			<option value="Audi Q3">Audi Q3</option>
+			<option value="Audi Q8">Audi Q8</option>
+		</select>
+		
+		<p style="font-size:30px;">Date of reservation:</p>
+		<input type='number' min="1" max="31" step="1" style="font-size:30px;" name='day2' placeholder='1'></input>
+		<select name="Month2" id="month2" style="font-size:30px;">
+			<option value="Select">Select</option>
+			<option value="January2">January</option>
+			<option value="February2">February</option>
+			<option value="March2">March</option>
+			<option value="April2">April</option>
+			<option value="May2">May</option>
+			<option value="June2">June</option>
+			<option value="July2">July</option>
+			<option value="August2">August</option>
+			<option value="September2">September</option>
+			<option value="October2">October</option>
+			<option value="November2">November</option>
+			<option value="December2">December</option>
+		</select>
+		<input type="number" min="1900" max="9999" step="1" style="font-size:30px;" name='year2' value="2022" /><br><br>
+		
+		<p style="font-size:30px;">Return Date:</p>
+		<input type='number' min="1" max="31" step="1" style="font-size:30px;" name='day3' placeholder='1'></input>
+		<select name="Month3" id="month3" style="font-size:30px;">
+			<option value="Select">Select</option>
+			<option value="January3">January</option>
+			<option value="February3">February</option>
+			<option value="March3">March</option>
+			<option value="April3">April</option>
+			<option value="May3">May</option>
+			<option value="June3">June</option>
+			<option value="July3">July</option>
+			<option value="August3">August</option>
+			<option value="September3">September</option>
+			<option value="October3">October</option>
+			<option value="November3">November</option>
+			<option value="December3">December</option>
+		</select>
+		<input type="number" min="1900" max="9999" style="font-size:30px;" step="1" value="2022" name='year3'/><br><br>
+		
+		<button class='button' style='color:white;border-radius: 12px;background-color:cherry;'>Insert Reservation</button>
+	</form>
+
+	</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Car Rent
+		</title>
+	</head>
+	<body style='background-color:gray'>
+	<style>
+		.button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: green;
+			padding: 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+		
+		.button:hover {background-color: #3e8e41}
+		
+		.button:active {
+			background-color: #3e8e41;
+			box-shadow: 0 5px #666;
+			transform: translateY(4px);
+		}
+		
+		input[type=text], input[type=password] {
+			width: 80%;   
+			margin: 8px 0;
+			padding: 12px 20px;   
+			display: inline-block;   
+			border: 2px solid green;   
+			box-sizing: border-box;
+			border-radius: 12px;	
+		} 	 
+			.grow {
+			height: 6%;
+			right:10%;
+			width: 10%;
+			top:0%;
+			position: absolute;
+			text-align: left;
+			overflow: hidden;
+			transition: 0.2s;
+		}
+		.grow:hover {
+			height: 35%;
+			width: 15%;
+		}
+		.right-hover:hover{
+			color: grey;
+		}
+		.categories_hover{
+			position:absolute;
+			left:22%;
+			top:4%;
+			height:10%;
+			overflow: hidden;
+		}
+		.categories_hover:hover{
+			top:14%;
+			background-color:white;
+			height: 75%;
+			width: 40%;
+			border-style: solid;
+			border-width:1px;
+			border-radius: 7px;
+		}
+		.categories_women_hover{
+			position:absolute;
+			left:29%;
+			top:4%;
+			height:10%;
+			overflow: hidden;
+		}
+		.categories_women_hover:hover{
+			top:14%;
+			background-color:white;
+			height: 75%;
+			width: 40%;
+			border-style: solid;
+			border-width:1px;
+			border-radius: 7px;
+		}
+		.categories_kids_hover{
+			position:absolute;
+			left:38%;
+			top:4%;
+			height:10%;
+			overflow: hidden;
+		}
+		.categories_kids_hover:hover{
+			top:14%;
+			background-color:white;
+			height: 75%;
+			width: 40%;
+			border-style: solid;
+			border-width:1px;
+			border-radius: 7px;
+		}
+		.hover_categories:hover{
+			color:black;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		</style>
+	<div style='background-color:teal'><br>
+	<h2>Car Rental Update/Delete </h2>
+	<br><br><br><br>
+		<div style='position:absolute;right:40%;top:1%'>
+		<br>
+		{% load static %}	
+			<img src="{% static 'car_image.png' %}" width="335" height="130" >
+		</div>
+	</div>
+
+	<form action='/DB_upd_del/' method='post'>
+		{% csrf_token %}
+		<br>
+		<h2 >{{Month_year_user}}</h2>
+		<textarea rows="13" cols="250" name='tab_data'>{{output1 | safe}}</textarea><br><br>
+		<div>
+			<input type="radio" id="update" name="update" value="update" checked>
+			<label for="Update" style="font-size:30px;">Update</label>
+			<input type='text' style='visibility:hidden' name='mnth_year' value='{{Month_year_user}}'></input>
+		</div>
+
+		<div>
+			<input type="radio" id="delete" name="update" value="delete">
+			<label for="delete" style="font-size:30px;">Delete</label><br><br>
+			<input type='text' name='res_id' style="font-size:10px;" placeholder='Enter Reservation ID for Delete Operation'>
+		</div>
+		<button class='button' style='color:white;border-radius: 12px;background-color:cherry;'>Update/Delete Reservation Details</button>
+	</form>
+
+	</body>
+</html>

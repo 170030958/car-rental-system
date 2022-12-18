@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Car Rental Login
+		</title>
+		<style>
+		.button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: green;
+			padding: 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+		
+		.button:hover {background-color: #3e8e41}
+		
+		.button:active {
+			background-color: #3e8e41;
+			box-shadow: 0 5px #666;
+			transform: translateY(4px);
+		}
+		
+		input[type=text], input[type=password] {
+			width: 80%;   
+			margin: 8px 0;
+			padding: 12px 20px;   
+			display: inline-block;   
+			border: 2px solid green;   
+			box-sizing: border-box;
+			border-radius: 12px;	
+		} 	 
+			.grow {
+			height: 6%;
+			right:10%;
+			width: 10%;
+			top:0%;
+			position: absolute;
+			text-align: left;
+			overflow: hidden;
+			transition: 0.2s;
+		}
+		.grow:hover {
+			height: 35%;
+			width: 15%;
+		}
+		.right-hover:hover{
+			color: grey;
+		}
+		.categories_hover{
+			position:absolute;
+			left:22%;
+			top:4%;
+			height:10%;
+			overflow: hidden;
+		}
+		.categories_hover:hover{
+			top:14%;
+			background-color:white;
+			height: 75%;
+			width: 40%;
+			border-style: solid;
+			border-width:1px;
+			border-radius: 7px;
+		}
+		.categories_women_hover{
+			position:absolute;
+			left:29%;
+			top:4%;
+			height:10%;
+			overflow: hidden;
+		}
+		.categories_women_hover:hover{
+			top:14%;
+			background-color:white;
+			height: 75%;
+			width: 40%;
+			border-style: solid;
+			border-width:1px;
+			border-radius: 7px;
+		}
+		.categories_kids_hover{
+			position:absolute;
+			left:38%;
+			top:4%;
+			height:10%;
+			overflow: hidden;
+		}
+		.categories_kids_hover:hover{
+			top:14%;
+			background-color:white;
+			height: 75%;
+			width: 40%;
+			border-style: solid;
+			border-width:1px;
+			border-radius: 7px;
+		}
+		.hover_categories:hover{
+			color:black;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		</style>
+	</head>
+	<body style='background-color:white;'>
+	
+	<div onclick='reload_homepage();' style='cursor:pointer;'>
+		<h3 style='font-style:italic;color:red;'>Car Rental Login</h3>
+	</div>
+	<br>
+	<hr>
+	
+	
+	<form action="/User/" id='user' method="post">
+		{% csrf_token %}
+		<div style="background-color:white;width:30%;"><br><!--position: absolute;right:30px-->
+		<b><label style='background-color:white'>Login:</label></b><br>
+		<input type="text" placeholder="Enter Username" name="login_username" required><br>  
+		<input type="password" placeholder="Enter Password" name="login_password" required><br>
+		<button class='button' style='color:white;border-radius: 12px;background-color:cherry;'>LOGIN</button>
+		<br><br>
+		
+		<label>Trouble Login? </label><label onclick='retrive_cred();' style='color:red;cursor: pointer;'>Get help</label>
+		<p>{{login_invalid}}</p>
+		</div>
+	</form>
+	
+	<form action='/Register/' method='post'>
+		{% csrf_token %}
+		<div style="background-color:white;width:25%;position: absolute;right:25%;top:15%"><br>
+			<b><label style='background-color:white'> Register:</label></b><br>
+			<input type="text" placeholder="Enter new Username" name="reg_username" required><br>
+			<input type="text" placeholder="Enter your Email Id" name="reg_email" required><br>	
+			<input type="password" placeholder="Enter Password" name="reg_password" required><br>
+			<input type="password" placeholder="ReEnter Password" name="reg_password1" required><br>
+			<button class='button' style='color:white;border-radius: 12px;background-color:orange;'>REGISTER</button>
+			<p>{{fail_creation}}</p>
+			<br>
+		</div>
+	</form>
+	
+	<form action='/reload_hmpg/' id='reload_hmpg' method='post'>
+		{% csrf_token %}
+		
+	</form>
+	<form action='/retrieve_cred/' id='retrieve_cred' method='post'>
+		{% csrf_token %}
+		
+	</form>
+	
+	<br><br><br><br>
+	<script>
+		function reload_homepage(){
+			document.getElementById('reload_hmpg').submit();
+		}
+		function retrive_cred(){
+			document.getElementById('retrieve_cred').submit();
+		}
+	</script>
+	
+	</body>
+</html>
